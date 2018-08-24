@@ -1,5 +1,5 @@
 {
-  "name": "@yonyou_lanbuild",
+  "name": "@yonyou/ac-lanbuild",
   "version": "1.0.1",
   "description": "lan build",
   "main": "index.js",
