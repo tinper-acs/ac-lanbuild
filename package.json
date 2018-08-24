@@ -1,0 +1,18 @@
+{
+  "name": "@yonyou_lanbuild",
+  "version": "1.0.1",
+  "description": "lan build",
+  "main": "index.js",
+  "homepage": "https://www.npmjs.com/package/lanbuild",
+  "repository":"https://www.npmjs.com/package/lanbuild",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lan",
+    "build",
+    "diwork"
+  ],
+  "author": "npm_yx",
+  "license": "ISC"
+}
