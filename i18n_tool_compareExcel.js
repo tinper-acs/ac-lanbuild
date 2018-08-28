@@ -44,7 +44,7 @@ var getTranslate = function (newFileSheet,translateFileSheet,ws2) {
     translateFileSheet.eachRow((translateRow, num) =>{
         if(translateRow.values[1] === row.values[1]  && translateRow.values[6] === row.values[6] && !match){
             match = true
-            ws2.addRow([row.values[1], row.values[2], row.values[3],row.values[4], row.values[5], row.values[6], translateRow.values[7], '']);
+            ws2.addRow([row.values[1], row.values[2], row.values[3],row.values[4], row.values[5], row.values[6], translateRow.values[7], translateRow.values[8]]);
         }else if(!match && num === translateFileSheet.actualRowCount){
           ws2.addRow([row.values[1], row.values[2], row.values[3],row.values[4], row.values[5], row.values[6], row.values[7], '']);
         }
