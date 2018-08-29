@@ -3,7 +3,7 @@
  */
 
 
-var path=require('path');
+var path = require('path');
 let fs = require('fs');
 
 // let addTags = require('./i18n_tool_addTags');
@@ -66,19 +66,20 @@ let  deleteFile = function (path) {
     
   };
 
-  let deleteFolder = function (path) {
+  let deleteFolder = function (pathVal) {
     let files = [];
-    if(fs.existsSync(path) ) {
-        files = fs.readdirSync(path);
+    if(fs.existsSync(pathVal) ) {
+        files = fs.readdirSync(pathVal);
         files.forEach(function(file,index){
-            var curPath = path + "/" + file;
+            // var curPath = pathVal + "/" + file;
+            var curPath = path.join(pathVal,file);
             if(fs.statSync(curPath).isDirectory()) { // recurse
                 deleteFolder(curPath);
             } else { // delete file
                 fs.unlinkSync(curPath);
             }
         });
-        fs.rmdirSync(path);
+        fs.rmdirSync(pathVal);
     }
     
   }
