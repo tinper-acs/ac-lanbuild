@@ -13,7 +13,8 @@ diwork 多语
 |参数|说明|类型|默认值|
 |:--|:---:|:--:|---:|
 |type|执行多语编译步骤，共两步|[1,2]|-|
-|basepath|根目录|String|-|
+|basepath|根目录，生成en tw代码存放的路径|String|-|
+|codePath|实际放置的目录|String|-|
 |enDir|翻译人员翻译完成的英文excel|String|-|
 |twDir|翻译人员翻译完成的繁体excel|String|-|
 |i18n_|生成文件件i18n的目录|String|-|
