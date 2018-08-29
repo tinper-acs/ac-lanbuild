@@ -5,7 +5,7 @@
 
 
 var path=require('path');
-
+let fs = require('fs');
 let addTags = require('./i18n_tool_addTags');
 let i18nGenerate =  require('./i18n_tool_1');
 let i18nExport = require('./i18n_tool_exportExcel');
@@ -57,15 +57,56 @@ let i18nCompareFunc  =  function (dir,translateFile,outPut) {
     })
    
 }
+let  deleteFile = function (path) {
+    let files = [];
+    if(fs.existsSync(path) && fs.statSync(path).isFile()){
+        fs.unlinkSync(path);
+        console.log('删除',path)
+        return false;
+    }
+    
+  };
+
+  let deleteFolder = function (pathVal) {
+    let files = [];
+    if(fs.existsSync(pathVal) ) {
+        files = fs.readdirSync(pathVal);
+        files.forEach(function(file,index){
+            // var curPath = pathVal + "/" + file;
+            var curPath = path.join(pathVal,file);
+            if(fs.statSync(curPath).isDirectory()) { // recurse
+                deleteFolder(curPath);
+            } else { // delete file
+                fs.unlinkSync(curPath);
+            }
+        });
+        fs.rmdirSync(pathVal);
+        console.log('删除',pathVal)
+    }
+    
+  }
+
+
 async function getExcel(res) {
-    let { basepath,i18n_addTags,i18n_, enDir, twDir, defaultDir,addTagsReg} = res;
+    // let { basepath,i18n_addTags,i18n_, enDir, twDir, defaultDir,addTagsReg} = res;
+    let { basepath,i18n_addTags,i18n_, outPutObj, defaultDir,addTagsReg} = res;
     try {
+        deleteFile(defaultDir);
+        deleteFolder(i18n_addTags);
+        deleteFolder(i18n_);
         await addTagsFunc(basepath,addTagsReg)
         // //生成一次i18n2 import4 提取 删除
         await i18nGenerateFunc(i18n_addTags);
         await i18nExportFunc(i18n_);
-        await i18nCompareFunc(enDir,defaultDir,'manager_new_en');
-        await i18nCompareFunc(twDir,defaultDir,'manager_new_tw');
+        if(Object.keys(outPutObj).length>0){
+            let outPutName ;
+            for(let key in outPutObj){
+                outPutName = outPutObj[key].dirNew.split(/\/|\\/g);
+                await i18nCompareFunc(outPutObj[key].dir,defaultDir,outPutName[outPutName.length-1].split('.')[0]);
+            }
+        }
+        // await i18nCompareFunc(enDir,defaultDir,'manager_new_en');
+        // await i18nCompareFunc(twDir,defaultDir,'manager_new_tw');
 
     }
     catch (err) {

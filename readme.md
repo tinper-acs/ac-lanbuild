@@ -26,9 +26,7 @@ diwork 多语
 
  // "name": "@yonyou/ac-lanbuild",
 以上参数必须有，缺一不可
-具体的配置信息可以看lanbuild.js文件
 
-##changelog
 version1.0.2:保留第八列的备注信息
 
 version1.0.3:window下的绝对路径与linux下的不一样问题

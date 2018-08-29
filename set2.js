@@ -86,10 +86,16 @@ let  deleteFile = function (path) {
 
 
 async function creatCpt(res) {
-    let { basepath,i18n_addTags,i18n_, enDirNew, twDirNew, defaultDir,codePath} = res;
+    // let { basepath,i18n_addTags,i18n_, enDirNew, twDirNew, defaultDir,codePath} = res;
+    let { basepath,i18n_addTags,i18n_, outPutObj, defaultDir,codePath} = res;
     try {
-        await i18nImportFunc(i18n_,codePath, enDirNew , 'en');
-        await i18nImportFunc(i18n_,codePath,twDirNew , 'tw');
+        if(Object.keys(outPutObj).length>0){
+            for(let key in outPutObj){
+                await i18nImportFunc(i18n_,codePath, outPutObj[key].dirNew , key);
+            }
+        }
+        // await i18nImportFunc(i18n_,codePath, enDirNew , 'en');
+        // await i18nImportFunc(i18n_,codePath, twDirNew , 'tw');
         await i18nEndFunc(i18n_);
         //完成构建之后
         deleteFile(defaultDir);
