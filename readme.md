@@ -23,7 +23,7 @@ diwork 多语
 |enDirNew|生成文件，最新的英文excel，请保证翻译内容正确，最后注入en|String|-|
 |twDirNew|生成文件，最新的繁体excel，请保证翻译内容正确，最后注入tw|String|-|
 |addTagsReg|添加$i18n{}$i18n_end标签所使用的正则|Reg|/[\u4E00-\u9FA5]+([\u4E00-\u9FA5]|[\uFE30-\uFFA0]|[0-9]|[\?\,\。\.\、])*/g|
-
+|outPutObj|将enDir，enDirNew，twDir, twDirNew放在一个对象中|{}|
  // "name": "@yonyou/ac-lanbuild",
 以上参数必须有，缺一不可
 具体的配置信息可以参照lanbuild.js
