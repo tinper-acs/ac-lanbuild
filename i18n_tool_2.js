@@ -98,11 +98,11 @@ var getValue = function (i18n_file, key) {
   }
 };
 
-var lansRecursive = function (path, lans) {
-  if (fs.existsSync(path)) {
-    fs.readdirSync(path).forEach((file, index) => {
-      // const curPath = `${path}/${file}`;
-      let curPath = path.join(path,file);
+var lansRecursive = function (pathVal, lans) {
+  if (fs.existsSync(pathVal)) {
+    fs.readdirSync(pathVal).forEach((file, index) => {
+      // const curPath = `${pathVal}/${file}`;
+      let curPath = path.join(pathVal,file);
       if (fs.lstatSync(curPath).isDirectory()) { // recurse
         lans = lansRecursive(curPath, lans);
       } else {
