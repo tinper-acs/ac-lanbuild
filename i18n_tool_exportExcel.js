@@ -1,5 +1,5 @@
 /**
- * Created by liuqnh on 2017/12/21.
+ * Created by yyxx on 2017/12/21.
  */
 
 
@@ -39,8 +39,8 @@ var walk = function (dir, dir_i18n, lan,done) {
             return false;
           } else {
             const content = fs.readFileSync(file).toString().split('\n');
-            let fileSplit = file.split('/');
-            let fileFDic = file.split('pc/')[1];
+            let fileSplit = file.split(/\/|\\/);
+            let fileFDic = file.split(/pc\/|pc\\/)[1];
             if (!fs.existsSync(file) || content.length === 0 || content[0] === '') {
               //没有这个文件不需要读取
               return false;
@@ -59,22 +59,22 @@ var walk = function (dir, dir_i18n, lan,done) {
   
 };
 
-var lansRecursive = function (path, lans) {
-  if (fs.existsSync(path)) {
-    fs.readdirSync(path).forEach((file, index) => {
-      const curPath = `${path}/${file}`;
-      if (fs.lstatSync(curPath).isDirectory()) { // recurse
-        lans = lansRecursive(curPath, lans);
-      } else {
-        const tails = curPath.split('.');
-        if (tails[tails.length - 1] == 'i18n' && lans.indexOf(tails[tails.length - 2]) == -1) {
-          lans = lans.concat(tails[tails.length - 2]);
-        }
-      }
-    });
-  }
-  return lans;
-};
+// var lansRecursive = function (path, lans) {
+//   if (fs.existsSync(path)) {
+//     fs.readdirSync(path).forEach((file, index) => {
+//       const curPath = `${path}/${file}`;
+//       if (fs.lstatSync(curPath).isDirectory()) { // recurse
+//         lans = lansRecursive(curPath, lans);
+//       } else {
+//         const tails = curPath.split('.');
+//         if (tails[tails.length - 1] == 'i18n' && lans.indexOf(tails[tails.length - 2]) == -1) {
+//           lans = lans.concat(tails[tails.length - 2]);
+//         }
+//       }
+//     });
+//   }
+//   return lans;
+// };
 
 
 const workbook = new Excel.Workbook();
@@ -84,7 +84,7 @@ let  projectName;
 function i18nExport(indir,excelName='default',lan='cn',callBack){
   ws1= workbook.addWorksheet(excelName);
   ws1.addRow(['文件目录', '文件名', 'key', '应用名称', '模块与功能结点', '简体中文', '英文', '繁体中文']);
-  projectName = indir.split('/')[indir.split('/').length - 2];
+  projectName = indir.split(/\/|\\/)[indir.split(/\/|\\/).length - 2];
   const rootpaths = indir.split(/\/|\\/);
   const root_i18n = indir;
  

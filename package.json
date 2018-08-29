@@ -1,6 +1,6 @@
 {
-  "name": "@yonyou/ac-lanbuild",
-  "version": "1.0.2",
+  "name": "lanbuild",
+  "version": "1.0.3",
   "description": "lan build",
   "main": "index.js",
   "homepage": "https://www.npmjs.com/package/lanbuild",

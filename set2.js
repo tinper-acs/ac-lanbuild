@@ -40,9 +40,9 @@ let i18nGenerateFunc = function (addTagsDir) {
     })
    
 }
-let i18nImportFunc = function (root_i18n, fileName , lanType) {
+let i18nImportFunc = function (root_i18n, codePath,fileName , lanType) {
     return new Promise((res, rej)=>{
-        i18nImport(root_i18n, fileName , lanType,(err,results)=>{
+        i18nImport(root_i18n,codePath, fileName , lanType,(err,results)=>{
             if (err) rej(err);
             res(results)
         })
@@ -85,10 +85,10 @@ let  deleteFile = function (path) {
 
 
 async function creatCpt(res) {
-    let { basepath,i18n_addTags,i18n_, enDirNew, twDirNew, defaultDir} = res;
+    let { basepath,i18n_addTags,i18n_, enDirNew, twDirNew, defaultDir,codePath} = res;
     try {
-        await i18nImportFunc(i18n_, enDirNew , 'en');
-        await i18nImportFunc(i18n_, twDirNew , 'tw');
+        await i18nImportFunc(i18n_,codePath, enDirNew , 'en');
+        await i18nImportFunc(i18n_,codePath,twDirNew , 'tw');
         await i18nEndFunc(i18n_);
         //完成构建之后
         deleteFile(defaultDir);

@@ -23,6 +23,9 @@ diwork 多语
 |twDirNew|生成文件，最新的繁体excel，请保证翻译内容正确，最后注入tw|String|-|
 |addTagsReg|添加$i18n{}$i18n_end标签所使用的正则|Reg|/[\u4E00-\u9FA5]+([\u4E00-\u9FA5]|[\uFE30-\uFFA0]|[0-9]|[\?\,\。\.\、])*/g|
 
+ // "name": "@yonyou/ac-lanbuild",
 以上参数必须有，缺一不可
 
 version1.0.2:保留第八列的备注信息
+
+version1.0.3:window下的绝对路径与linux下的不一样问题

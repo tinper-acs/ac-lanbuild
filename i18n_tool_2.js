@@ -101,7 +101,8 @@ var getValue = function (i18n_file, key) {
 var lansRecursive = function (path, lans) {
   if (fs.existsSync(path)) {
     fs.readdirSync(path).forEach((file, index) => {
-      const curPath = `${path}/${file}`;
+      // const curPath = `${path}/${file}`;
+      let curPath = path.join(path,file);
       if (fs.lstatSync(curPath).isDirectory()) { // recurse
         lans = lansRecursive(curPath, lans);
       } else {
@@ -115,21 +116,21 @@ var lansRecursive = function (path, lans) {
   return lans;
 };
 
-var deleteall = function (path) {
-  let files = [];
-  if (fs.existsSync(path)) {
-    files = fs.readdirSync(path);
-    files.forEach((file, index) => {
-      const curPath = `${path}/${file}`;
-      if (fs.statSync(curPath).isDirectory()) { // recurse
-        deleteall(curPath);
-      } else { // delete file
-        fs.unlinkSync(curPath);
-      }
-    });
-    fs.rmdirSync(path);
-  }
-};
+// var deleteall = function (path) {
+//   let files = [];
+//   if (fs.existsSync(path)) {
+//     files = fs.readdirSync(path);
+//     files.forEach((file, index) => {
+//       const curPath = `${path}/${file}`;
+//       if (fs.statSync(curPath).isDirectory()) { // recurse
+//         deleteall(curPath);
+//       } else { // delete file
+//         fs.unlinkSync(curPath);
+//       }
+//     });
+//     fs.rmdirSync(path);
+//   }
+// };
 
 
 
