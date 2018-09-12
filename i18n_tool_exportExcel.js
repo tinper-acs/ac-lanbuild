@@ -8,7 +8,7 @@ const path = require('path');
 var Excel = require('exceljs');
 let defaultDir = path.join(__dirname,'./default.xlsx'); 
 
-var walk = function (dir,codePath, dir_i18n, lan,done) {
+var walk = function (dir, dir_i18n, lan,codePath, done) {
   let results = [];
   const root = dir;
   const root_i18n = dir_i18n;
@@ -24,7 +24,7 @@ var walk = function (dir,codePath, dir_i18n, lan,done) {
         if (!fs.existsSync(root_i18n + half)) {
           fs.mkdirSync(root_i18n + half);
         }
-        walk(file, root_i18n + half, lan, function (err, res) {
+        walk(file, root_i18n + half, lan, codePath,function (err, res) {
           results = results.concat(res);
           if (!--pending) done(null, results);
         });
@@ -82,7 +82,7 @@ const workbook = new Excel.Workbook();
 let ws1;
 let  projectName;
 
-function i18nExport(indir,codePath,excelName='default',lan='cn',callBack){
+function i18nExport(indir,excelName='default',lan='cn',codePath,callBack){
   ws1= workbook.addWorksheet(excelName);
   ws1.addRow(['文件目录', '文件名', 'key', '应用名称', '模块与功能结点', '简体中文', '英文', '繁体中文']);
   projectName = indir.split(/\/|\\/)[indir.split(/\/|\\/).length - 2];
@@ -93,7 +93,7 @@ function i18nExport(indir,codePath,excelName='default',lan='cn',callBack){
   const root_lan = indir.substring(0, indir.length - rootpaths[rootpaths.length - 1].length) + 'cn';
   if (!fs.existsSync(root_lan)) { fs.mkdirSync(root_lan); }
  
-  walk(indir,codePath, root_lan, lan,(err, results) => {
+  walk(indir, root_lan, lan, codePath, (err, results) => {
     if (err) throw err;
   });
   workbook.xlsx.writeFile(`${excelName}.xlsx`)

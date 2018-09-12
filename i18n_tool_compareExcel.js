@@ -21,11 +21,24 @@ function i18nCompare(translateFileVal,newFileVal,fileNameVal,callBackVal){
   newFile = newFileVal;
   outPut = fileNameVal;
   callBack = callBackVal;
-  translateFileWorkBook.xlsx.readFile(translateFile).then(()=>{
-      translateFileSheet = translateFileWorkBook.getWorksheet(1);
-      if(translateFileSheet) nextFunc(workbook,ws2)  ;
-  })
-
+  //这里有个情况，就是translateFileVal一开始没有的情况
+  if(fs.existsSync(translateFileVal)){
+    translateFileWorkBook.xlsx.readFile(translateFile).then(()=>{
+        translateFileSheet = translateFileWorkBook.getWorksheet(1);
+        if(translateFileSheet) nextFunc(workbook,ws2)  ;
+    });
+  }else{
+    newFileWorkBook.xlsx.readFile(newFile).then((res) => {
+        newFileSheet = newFileWorkBook.getWorksheet(1); //or name of the worksheet
+        if(newFileSheet ){
+          newFileSheet.eachRow(function (row, rowNumber) {
+            ws2.addRow([row.values[1], row.values[2], row.values[3],row.values[4], row.values[5], row.values[6], row.values[7], '']);
+          });
+        }
+        writeFunc(workbook);
+    });
+  }
+  
 }
 
 var nextFunc = function (workbook,ws2) {

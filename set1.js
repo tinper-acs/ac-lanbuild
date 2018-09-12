@@ -40,17 +40,17 @@ let i18nGenerateFunc = function (addTagsDir) {
 }
 let i18nExportFunc  =  function (indir,codePath,excelName='default',lan='cn') {
     return new Promise((res,rej)=>{
-        i18nExport(indir,codePath,excelName='default',lan='cn' ,(err, results) => {
+        i18nExport(indir,excelName='default',lan='cn' ,codePath,(err, results) => {
             if (err) rej(err);
             res(1);
         });
     })
    
 }
-let i18nCompareFunc  =  function (dir,translateFile,outPut) {
+let i18nCompareFunc  =  function (translateFile,dir,outPut) {
     console.log('开始compared',outPut)
     return new Promise((res,rej)=>{
-        i18nCompare(dir,translateFile,outPut, (err, results) => {
+        i18nCompare(translateFile,dir,outPut, (err, results) => {
             if (err) rej(err);
             res(1)
         });
