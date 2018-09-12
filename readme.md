@@ -14,7 +14,7 @@ diwork 多语
 |:--|:---:|:--:|---:|
 |type|执行多语编译步骤，共两步|[1,2]|-|
 |basepath|根目录，生成en tw代码存放的路径|String|-|
-|codePath|实际放置的目录|String|-|
+|codePath|实际放置代码的目录，请注意末尾必须有'/'|String|-|
 |enDir|翻译人员翻译完成的英文excel|String|-|
 |twDir|翻译人员翻译完成的繁体excel|String|-|
 |i18n_|生成文件件i18n的目录|String|-|
@@ -31,3 +31,7 @@ diwork 多语
 version1.0.2:保留第八列的备注信息
 
 version1.0.3:window下的绝对路径与linux下的不一样问题
+
+version1.0.7:自动配置可以生成的多语有哪些，outPutObj里面设计需要产出的多余
+
+version1.0.8:修改exportExcel产出的excel的第一列的内容的bug问题

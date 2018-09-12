@@ -38,9 +38,9 @@ let i18nGenerateFunc = function (addTagsDir) {
     })
    
 }
-let i18nExportFunc  =  function (indir,excelName='default',lan='cn') {
+let i18nExportFunc  =  function (indir,codePath,excelName='default',lan='cn') {
     return new Promise((res,rej)=>{
-        i18nExport(indir,excelName='default',lan='cn' ,(err, results) => {
+        i18nExport(indir,codePath,excelName='default',lan='cn' ,(err, results) => {
             if (err) rej(err);
             res(1);
         });
@@ -89,7 +89,7 @@ let  deleteFile = function (path) {
 
 async function getExcel(res) {
     // let { basepath,i18n_addTags,i18n_, enDir, twDir, defaultDir,addTagsReg} = res;
-    let { basepath,i18n_addTags,i18n_, outPutObj, defaultDir,addTagsReg} = res;
+    let { basepath,i18n_addTags,i18n_, outPutObj, defaultDir,addTagsReg, codePath} = res;
     try {
         deleteFile(defaultDir);
         deleteFolder(i18n_addTags);
@@ -97,7 +97,7 @@ async function getExcel(res) {
         await addTagsFunc(basepath,addTagsReg)
         // //生成一次i18n2 import4 提取 删除
         await i18nGenerateFunc(i18n_addTags);
-        await i18nExportFunc(i18n_);
+        await i18nExportFunc(i18n_,codePath);
         if(Object.keys(outPutObj).length>0){
             let outPutName ;
             for(let key in outPutObj){

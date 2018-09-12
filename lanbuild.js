@@ -6,11 +6,12 @@ var type = process.argv[2]*1;
 var basepath = path.join(__dirname,'../src');//根目录,也是en，tw资源生成的目录
 var enDir = path.join(__dirname,'../appstore_fe_20180814.xlsx'); //翻译人员翻译完成
 var twDir = path.join(__dirname,'../appstore_fe_20180814_tw.xlsx'); //翻译人员翻译完成
-var codePath = path.join(i18n_,'workbench/pc/');//src下代码具体存放的目录
+
 
 //不需要修改
 var i18n_addTags = path.join(__dirname,'../i18n_addTags');//生成的1，不需要修改
 var i18n_ = path.join(__dirname,'../i18n');//生成2，不需要修改
+var codePath = path.join(i18n_,'workbench/pc/');//pc目录下才是真正存放代码的地方，请注意‘/’必须要有
 var defaultDir = path.join(__dirname,'../default.xlsx'); //生成3，不需要修改
 var enDirNew = path.join(__dirname,'../manager_new_en.xlsx'); //生成4，不需要修改
 var twDirNew = path.join(__dirname,'../manager_new_tw.xlsx'); //生成5，不需要修改
