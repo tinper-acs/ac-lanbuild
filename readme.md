@@ -35,5 +35,8 @@ version1.0.3:window下的绝对路径与linux下的不一样问题
 version1.0.7:自动配置可以生成的多语有哪些，outPutObj里面设计需要产出的多余
 
 version1.0.8:
-1修改exportExcel产出的excel的第一列的内容的bug问题
-2第一次本地没有翻译好的英文和繁体的excel时候
+1修改exportExcel产出的newexcel的第一列的内容的bug问题
+2第一次本地没有翻译好的英文和繁体的excel时候bug修改
+
+version1.0.8-beta.0:
+解析限制只处理.js .jsx的文件

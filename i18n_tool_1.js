@@ -44,10 +44,11 @@ var walk = function (dir, dir_i18n,done) {
         fs.truncateSync(root_i18n + half)
       }
       // 20180531 添加图片不处理
-      if(file.match(/.jpg|.gif|.png|.bmp|.svg|.css|.woff/i)){
-        fs.writeFileSync(root_i18n + half, fs.readFileSync(file)); 
-        ++allStreamFile;
-      }else {
+      // if(file.match(/.jpg|.gif|.png|.bmp|.svg|.css|.woff|.md/i)){
+      //   fs.writeFileSync(root_i18n + half, fs.readFileSync(file)); 
+      //   ++allStreamFile;
+      // }else 
+      if(file.match(/.js|.jsx/i)) {
         readLine.on('line', function (line) {
           var spieces = line.split(/\$i18n-end/)
           var re = /\$i18n{.+}/g
@@ -81,6 +82,9 @@ var walk = function (dir, dir_i18n,done) {
             callBackVal(null,1)
           }
         })
+      }else{
+        fs.writeFileSync(root_i18n + half, fs.readFileSync(file)); 
+        ++allStreamFile;
       }
     }
     // if (!--pending) done(null, results);

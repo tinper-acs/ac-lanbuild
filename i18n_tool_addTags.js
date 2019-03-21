@@ -34,11 +34,12 @@ function walk(dir, dir_i18n,addTagsReg, done) {
       results.push(file);
       var half = file.substring(root.length, file.length);
       // 20180531新增判断如果不是js文件，则不用解析了
-      if(file.match(/.jpg|.gif|.png|.bmp|.svg|.css|.woff/i)){
-        //fs.copyFileSync(file,root_i18n+half);
-        fs.writeFileSync(root_i18n+half, fs.readFileSync(file)); 
-        ++allStreamFile;
-      }else{
+      // if(file.match(/.jpg|.gif|.png|.bmp|.svg|.css|.woff/i)){
+      //   //fs.copyFileSync(file,root_i18n+half);
+      //   fs.writeFileSync(root_i18n+half, fs.readFileSync(file)); 
+      //   ++allStreamFile;
+      // }else 
+      if(file.match(/.js|.jsx/i)){
         let readLine = lineReader.createInterface({
           input: fs.createReadStream(file),
         });// 先创建一个实例
@@ -90,6 +91,9 @@ function walk(dir, dir_i18n,addTagsReg, done) {
             callBackVal(null,1)
           }
         })
+      }else{
+        fs.writeFileSync(root_i18n+half, fs.readFileSync(file)); 
+        ++allStreamFile;
       }
     }
     // if (!--pending) done(null, results);
