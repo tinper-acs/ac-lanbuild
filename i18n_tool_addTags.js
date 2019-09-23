@@ -45,7 +45,7 @@ function walk(dir, dir_i18n,addTagsReg, done) {
         });// 先创建一个实例
         let count = 0;
         readLine.on('line', (line) => {
-            var spieces=line.trim(line);// 拿到所有字符串
+            var spieces=line.trim();// 拿到所有字符串
             // var re= /([\u4E00-\u9FA5]|[\uFE30-\uFFA0])+([\u4E00-\u9FA5]|[\uFE30-\uFFA0]|[0-9]|[\?\,\。\.\、\/])*/g; 
             var re = addTagsReg;
             var regNote =/(^.*\/\/|^\s*\/\*.*\*\/$)/g; // 存在的问题：中文展示后面有注释
