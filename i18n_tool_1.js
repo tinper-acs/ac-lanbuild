@@ -48,7 +48,7 @@ var walk = function (dir, dir_i18n,done) {
       //   fs.writeFileSync(root_i18n + half, fs.readFileSync(file)); 
       //   ++allStreamFile;
       // }else 
-      if(file.match(/.js|.jsx/i)) {
+      if(file.match(/.js|.jsx/i)  && stat.size > 0) {
         readLine.on('line', function (line) {
           var spieces = line.split(/\$i18n-end/)
           var re = /\$i18n{.+}/g

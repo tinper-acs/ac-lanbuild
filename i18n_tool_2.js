@@ -54,7 +54,7 @@ var walk = function (dir, dir_i18n, lan, done) {
             // if(file.match(/.jpg|.gif|.png|.bmp|.svg|.css|.woff/i)){
             //   fs.writeFileSync(root_i18n + half, fs.readFileSync(file)); 
             // } else 
-            if(file.match(/.js|.jsx/i)) {
+            if(file.match(/.js|.jsx/i) && stat.size > 0) {
               readLine.on('line', function (line) {
                 var spieces = line.split(/\$i18n-end/)
                 var re = /\$i18n{.+}/g

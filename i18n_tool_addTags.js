@@ -39,13 +39,13 @@ function walk(dir, dir_i18n,addTagsReg, done) {
       //   fs.writeFileSync(root_i18n+half, fs.readFileSync(file)); 
       //   ++allStreamFile;
       // }else 
-      if(file.match(/.js|.jsx/i)){
+      if(file.match(/.js|.jsx/i) && stat.size >0){
         let readLine = lineReader.createInterface({
           input: fs.createReadStream(file),
         });// 先创建一个实例
         let count = 0;
         readLine.on('line', (line) => {
-            var spieces=line;// 拿到所有字符串
+            var spieces=line.trim(line);// 拿到所有字符串
             // var re= /([\u4E00-\u9FA5]|[\uFE30-\uFFA0])+([\u4E00-\u9FA5]|[\uFE30-\uFFA0]|[0-9]|[\?\,\。\.\、\/])*/g; 
             var re = addTagsReg;
             var regNote =/(^.*\/\/|^\s*\/\*.*\*\/$)/g; // 存在的问题：中文展示后面有注释
